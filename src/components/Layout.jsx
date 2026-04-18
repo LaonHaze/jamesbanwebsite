@@ -14,7 +14,7 @@ const COMPONENTS = {
   'about.md': About,
   'skills.json': Skills,
   'experience.ts': Experience,
-  'education.md': Education,
+  'education.txt': Education,
   'contact.yml': Contact,
 }
 

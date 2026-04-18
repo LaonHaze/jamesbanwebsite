@@ -1,3 +1,5 @@
+import { getYearsExperience } from '../utils/experience'
+
 export const COMMANDS = {
   help: {
     description: 'List all available commands',
@@ -16,10 +18,10 @@ export const COMMANDS = {
   about: {
     description: 'Who am I',
     output: () => [
-      { type: 'title', text: 'Jaeyoung (James) Ban — Senior Full Stack Developer' },
+      { type: 'title', text: 'Jaeyoung (James) Ban — Full Stack Developer' },
       { type: 'text', text: 'Based in Auckland, New Zealand.' },
       { type: 'spacer' },
-      { type: 'text', text: 'Senior full stack developer with 6+ years of experience delivering production-grade web applications. I\'ve led system migrations, microservices adoption, and integration of business-critical platforms across frontend and backend.' },
+      { type: 'text', text: `Full stack developer with ${getYearsExperience()}+ years of experience delivering production-grade web applications. I've led system migrations, microservices adoption, and integration of business-critical platforms across frontend and backend.` },
       { type: 'spacer' },
       { type: 'text', text: 'I drive architectural decisions to improve scalability, maintainability, and deployment reliability — and leverage AI-assisted tools to support development workflows where appropriate.' },
     ],

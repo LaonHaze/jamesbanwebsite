@@ -199,7 +199,7 @@ function WelcomeBanner() {
   |,4-  ) )-,_..;\\ (  \`'-'
  '---''(_/--'  \`-'\\_)`}
       </pre>
-      <p className="text-terminal-green font-semibold mt-1">Jaeyoung (James) Ban — Senior Full Stack Developer</p>
+      <p className="text-terminal-green font-semibold mt-1">Jaeyoung (James) Ban — Full Stack Developer</p>
       <p className="text-terminal-muted text-sm">Auckland, New Zealand</p>
       <p className="text-terminal-text/80 mt-2">
         Type <span className="text-terminal-yellow font-mono">help</span> to see available commands.

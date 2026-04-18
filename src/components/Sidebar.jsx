@@ -4,7 +4,7 @@ const FILES = [
   { name: 'about.md' },
   { name: 'skills.json' },
   { name: 'experience.ts' },
-  { name: 'education.md' },
+  { name: 'education.txt' },
   { name: 'contact.yml' },
 ]
 
@@ -29,7 +29,7 @@ export default function Sidebar({ activeFile, onFileClick }) {
                   : 'text-terminal-muted hover:text-terminal-text hover:bg-terminal-surface/50'
               }`}
             >
-              <span className={`text-xs shrink-0 ${color}`}>{icon}</span>
+              <span className={`text-xs shrink-0 w-6 text-center ${color}`}>{icon}</span>
               <span>{name}</span>
             </button>
           )

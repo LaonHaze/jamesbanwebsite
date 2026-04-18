@@ -23,14 +23,12 @@ const ACHIEVEMENTS = [
 export default function Education() {
   return (
     <div className="p-8 max-w-3xl">
-      <p className="font-mono text-terminal-cyan text-sm mb-2">$ cat education.md</p>
+      <p className="font-mono text-terminal-cyan text-sm mb-2">$ ls ~/university/</p>
       <h2 className="text-2xl font-bold text-terminal-text mb-8">Education</h2>
 
-      <div className="relative mb-10">
-        <div className="absolute left-0 top-0 bottom-0 w-px bg-terminal-border ml-1" />
+      <div className="mb-10">
         {EDUCATION.map((edu, i) => (
-          <div key={i} className="relative pl-8">
-            <div className="absolute left-0 top-1.5 w-2.5 h-2.5 rounded-full bg-terminal-cyan border-2 border-terminal-bg" />
+          <div key={i}>
             <div className="bg-terminal-surface border border-terminal-border rounded-lg p-5">
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>

@@ -3,6 +3,7 @@ const ICONS = {
   json: { icon: '{ }', color: 'text-terminal-yellow' },
   ts:   { icon: 'TS', color: 'text-blue-500' },
   yml:  { icon: '≡', color: 'text-orange-400' },
+  txt:  { icon: 'TXT', color: 'text-terminal-muted' },
 }
 
 export function getFileIcon(filename) {
