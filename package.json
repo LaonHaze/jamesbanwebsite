@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
-  "homepage": "https://jban0811.github.io/jamesbanwebsite",
+  "homepage": "https://LaonHaze.github.io/jamesbanwebsite",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
