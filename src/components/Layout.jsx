@@ -84,9 +84,13 @@ export default function Layout() {
   }
 
   const closeTab = (name) => {
+    const idx = openTabs.indexOf(name)
     const remaining = openTabs.filter((t) => t !== name)
     setOpenTabs(remaining)
-    if (activeFile === name) setActiveFile(remaining[remaining.length - 1] ?? null)
+    if (activeFile === name) {
+      const next = remaining[idx] ?? remaining[idx - 1] ?? null
+      setActiveFile(next)
+    }
   }
 
   const startResize = (e, direction) => {
