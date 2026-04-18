@@ -23,6 +23,9 @@
   ::-webkit-scrollbar-thumb {
     @apply bg-terminal-border rounded-full;
   }
+  .tab-bar::-webkit-scrollbar {
+    height: 3px;
+  }
 }
 
 @layer utilities {

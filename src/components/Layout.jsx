@@ -69,9 +69,9 @@ const LinkedInIcon = () => (
 export default function Layout() {
   const [activeFile, setActiveFile] = useState(null)
   const [openTabs, setOpenTabs] = useState([])
-  const [sidebarOpen, setSidebarOpen] = useState(true)
-  const [terminalWidth, setTerminalWidth] = useState(420)
-  const [terminalHeight, setTerminalHeight] = useState(224)
+  const [sidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 1024)
+  const [terminalWidth, setTerminalWidth] = useState(340)
+  const [terminalHeight, setTerminalHeight] = useState(300)
   const isMobile = useIsMobile()
 
   const dragStart = useRef(0)
@@ -79,7 +79,7 @@ export default function Layout() {
 
   const openFile = (name) => {
     setActiveFile(name)
-    setOpenTabs((prev) => prev.includes(name) ? prev : [...prev, name])
+    setOpenTabs((prev) => [name, ...prev.filter((t) => t !== name)])
     if (isMobile) setSidebarOpen(false)
   }
 
@@ -152,7 +152,7 @@ export default function Layout() {
       <div className="h-8 bg-terminal-surface border-b border-terminal-border flex items-center px-3 shrink-0">
         <button
           onClick={() => setSidebarOpen((o) => !o)}
-          className="text-terminal-muted hover:text-terminal-text transition-colors p-0.5 mr-2"
+          className="lg:hidden text-terminal-muted hover:text-terminal-text transition-colors p-0.5 mr-2"
           aria-label="Toggle sidebar"
         >
           <MenuIcon />
@@ -184,7 +184,7 @@ export default function Layout() {
           <div className={`
             shrink-0 overflow-hidden transition-[width] duration-200 border-r border-terminal-border
             ${isMobile ? 'absolute top-0 left-0 h-full z-20' : 'relative'}
-            ${sidebarOpen ? 'w-52' : 'w-0'}
+            ${isMobile ? (sidebarOpen ? 'w-52' : 'w-0') : 'w-52'}
           `}>
             <div className="w-52 h-full">
               <Sidebar activeFile={activeFile} onFileClick={openFile} />
@@ -195,7 +195,7 @@ export default function Layout() {
           <div className="flex flex-col flex-1 overflow-hidden min-w-0">
             {openTabs.length > 0 && <TabBar tabs={openTabs} activeTab={activeFile} onTabClick={setActiveFile} onTabClose={closeTab} />}
             <div className="flex-1 overflow-y-auto bg-terminal-bg">
-              {ActiveComponent ? <ActiveComponent /> : <Welcome onOpenFile={openFile} />}
+              {ActiveComponent ? <ActiveComponent /> : <Welcome onOpenFile={openFile} onOpenSidebar={() => setSidebarOpen(true)} />}
             </div>
           </div>
 

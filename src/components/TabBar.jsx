@@ -2,7 +2,7 @@ import { getFileIcon } from './fileIcons'
 
 export default function TabBar({ tabs, activeTab, onTabClick, onTabClose }) {
   return (
-    <div className="flex items-end bg-terminal-bg border-b border-terminal-border overflow-x-auto shrink-0 h-9">
+    <div className="tab-bar flex items-center bg-terminal-bg border-b border-terminal-border shrink-0 h-9 overflow-x-auto overflow-y-hidden">
       {tabs.map((name) => {
         const { icon, color } = getFileIcon(name)
         const isActive = name === activeTab
