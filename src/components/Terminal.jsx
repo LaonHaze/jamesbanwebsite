@@ -229,6 +229,10 @@ export default function Terminal() {
     }
   }, [history])
 
+  useEffect(() => {
+    return () => Object.values(intervalsRef.current).forEach(clearInterval)
+  }, [])
+
   const focusInput = useCallback(() => {
     inputRef.current?.focus()
   }, [])
@@ -323,10 +327,10 @@ export default function Terminal() {
       <div ref={outputRef} className="p-4 flex-1 overflow-y-auto" onClick={focusInput}>
         <WelcomeBanner />
 
-        {history.map((entry, i) => {
+        {history.map((entry) => {
           const { lineIdx, charIdx } = entry.streamPos
           return (
-            <div key={i} className="mb-3">
+            <div key={entry.id} className="mb-3">
               <div className="flex items-center gap-2 text-terminal-muted mb-1">
                 <span className="text-terminal-green">›</span>
                 <span className="text-terminal-text">{entry.input}</span>

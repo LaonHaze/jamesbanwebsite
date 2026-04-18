@@ -10,10 +10,10 @@ export default function TabBar({ tabs, activeTab, onTabClick, onTabClose }) {
           <div
             key={name}
             onClick={() => onTabClick(name)}
-            className={`flex items-center gap-2 px-4 py-2 text-sm font-mono cursor-pointer shrink-0 border-r border-terminal-border transition-colors group ${
+            className={`flex items-center gap-2 px-4 py-2 text-sm font-mono cursor-pointer shrink-0 border-r border-t border-terminal-border transition-colors duration-200 group ${
               isActive
-                ? 'bg-terminal-surface text-terminal-text border-t border-t-terminal-cyan'
-                : 'text-terminal-muted hover:text-terminal-text bg-terminal-bg'
+                ? 'bg-terminal-surface text-terminal-text border-t-terminal-cyan'
+                : 'bg-terminal-bg text-terminal-muted hover:bg-terminal-surface/50 border-t-terminal-bg'
             }`}
           >
             <span className={`text-xs ${color}`}>{icon}</span>

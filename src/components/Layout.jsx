@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Sidebar from './Sidebar'
 import TabBar from './TabBar'
 import StatusBar from './StatusBar'
@@ -10,6 +10,8 @@ import Contact from './Contact'
 import Education from './Education'
 import Welcome from './Welcome'
 
+const MOBILE_BREAKPOINT = 1024
+
 const COMPONENTS = {
   'about.md': About,
   'skills.json': Skills,
@@ -19,13 +21,35 @@ const COMPONENTS = {
 }
 
 function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 1024)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < MOBILE_BREAKPOINT)
   useEffect(() => {
-    const handler = () => setIsMobile(window.innerWidth < 1024)
+    const handler = () => setIsMobile(window.innerWidth < MOBILE_BREAKPOINT)
     window.addEventListener('resize', handler)
     return () => window.removeEventListener('resize', handler)
   }, [])
   return isMobile
+}
+
+function TerminalPanel({ isMobile, terminalHeight, terminalWidth, onDragStart }) {
+  return (
+    <div
+      style={isMobile ? { height: terminalHeight } : { width: terminalWidth }}
+      className="shrink-0 flex flex-col bg-terminal-surface border-terminal-border"
+    >
+      <div
+        className={`px-3 text-xs text-terminal-muted font-mono border-b border-terminal-border flex items-center gap-2 shrink-0 h-9 ${isMobile ? 'cursor-row-resize select-none' : ''}`}
+        onMouseDown={isMobile ? onDragStart : undefined}
+        onTouchStart={isMobile ? onDragStart : undefined}
+      >
+        {isMobile && <span className="text-terminal-border mr-1">⠿</span>}
+        <span className="w-2 h-2 rounded-full bg-terminal-green opacity-70" />
+        <span>TERMINAL — jban@portfolio</span>
+      </div>
+      <div className="flex-1 overflow-hidden">
+        <Terminal />
+      </div>
+    </div>
+  )
 }
 
 function ResizeHandle({ direction, onDragStart }) {
@@ -69,7 +93,7 @@ const LinkedInIcon = () => (
 export default function Layout() {
   const [activeFile, setActiveFile] = useState(null)
   const [openTabs, setOpenTabs] = useState([])
-  const [sidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= 1024)
+  const [sidebarOpen, setSidebarOpen] = useState(() => window.innerWidth >= MOBILE_BREAKPOINT)
   const [terminalWidth, setTerminalWidth] = useState(340)
   const [terminalHeight, setTerminalHeight] = useState(300)
   const isMobile = useIsMobile()
@@ -93,7 +117,7 @@ export default function Layout() {
     }
   }
 
-  const startResize = (e, direction) => {
+  const startResize = useCallback((e, direction) => {
     e.preventDefault()
     const isTouch = e.type === 'touchstart'
     const clientX = isTouch ? e.touches[0].clientX : e.clientX
@@ -131,29 +155,9 @@ export default function Layout() {
     document.addEventListener('mouseup', onUp)
     document.addEventListener('touchmove', onMove, { passive: false })
     document.addEventListener('touchend', onUp)
-  }
+  }, [terminalWidth, terminalHeight])
 
   const ActiveComponent = activeFile ? COMPONENTS[activeFile] : null
-
-  const terminalPanel = (
-    <div
-      style={isMobile ? { height: terminalHeight } : { width: terminalWidth }}
-      className="shrink-0 flex flex-col bg-terminal-surface border-terminal-border"
-    >
-      <div
-        className={`px-3 text-xs text-terminal-muted font-mono border-b border-terminal-border flex items-center gap-2 shrink-0 h-9 ${isMobile ? 'cursor-row-resize select-none' : ''}`}
-        onMouseDown={isMobile ? (e) => startResize(e, 'vertical') : undefined}
-        onTouchStart={isMobile ? (e) => startResize(e, 'vertical') : undefined}
-      >
-        {isMobile && <span className="text-terminal-border mr-1">⠿</span>}
-        <span className="w-2 h-2 rounded-full bg-terminal-green opacity-70" />
-        <span>TERMINAL — jban@portfolio</span>
-      </div>
-      <div className="flex-1 overflow-hidden">
-        <Terminal />
-      </div>
-    </div>
-  )
 
   return (
     <div className="h-dvh flex flex-col bg-terminal-bg text-terminal-text overflow-hidden">
@@ -212,7 +216,7 @@ export default function Layout() {
           {!isMobile && (
             <>
               <ResizeHandle direction="horizontal" onDragStart={(e) => startResize(e, 'horizontal')} />
-              {terminalPanel}
+              <TerminalPanel isMobile={false} terminalWidth={terminalWidth} terminalHeight={terminalHeight} onDragStart={null} />
             </>
           )}
         </div>
@@ -221,7 +225,7 @@ export default function Layout() {
         {isMobile && (
           <>
             <ResizeHandle direction="vertical" onDragStart={(e) => startResize(e, 'vertical')} />
-            {terminalPanel}
+            <TerminalPanel isMobile={true} terminalWidth={terminalWidth} terminalHeight={terminalHeight} onDragStart={(e) => startResize(e, 'vertical')} />
           </>
         )}
       </div>

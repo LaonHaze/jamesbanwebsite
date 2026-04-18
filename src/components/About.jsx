@@ -1,6 +1,7 @@
 import { getYearsExperience } from '../utils/experience'
 
 export default function About() {
+  const years = getYearsExperience()
   return (
     <div className="p-8 max-w-3xl">
       <p className="font-mono text-terminal-cyan text-sm mb-2">$ cat about.md</p>
@@ -9,7 +10,7 @@ export default function About() {
       <div className="grid md:grid-cols-5 gap-8">
         <div className="md:col-span-3 space-y-4 text-terminal-text/75 leading-relaxed font-sans">
           <p>
-            Full stack developer with {getYearsExperience()}+ years of experience delivering production-grade web applications. I've led system migrations, microservices adoption, and integration of business-critical platforms across frontend and backend.
+            Full stack developer with {years}+ years of experience delivering production-grade web applications. I've led system migrations, microservices adoption, and integration of business-critical platforms across frontend and backend.
           </p>
           <p>
             I drive architectural decisions to improve scalability, maintainability, and deployment reliability — from defining system architecture on greenfield projects to modernising legacy platforms under real constraints.
@@ -27,7 +28,7 @@ export default function About() {
               {[
                 { key: 'location',   value: 'Auckland, NZ' },
                 { key: 'role',       value: 'Full Stack Developer' },
-                { key: 'experience', value: `${getYearsExperience()} years` },
+                { key: 'experience', value: `${years} years` },
                 { key: 'education',  value: 'BSc CS, UoA' },
                 { key: 'stack',      value: ['.NET', 'React', 'VBA', 'Python'] },
                 { key: 'languages',  value: ['English', 'Korean'] },

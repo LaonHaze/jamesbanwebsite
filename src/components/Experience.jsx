@@ -3,7 +3,6 @@ const EXPERIENCE = [
     company: 'Sandfield',
     role: 'Solution Developer',
     period: 'Nov 2021 – Present',
-    duration: '4yrs 6mos',
     location: 'Auckland, NZ',
     bullets: [
       'Led end-to-end migration of the NZTR portal from legacy MS Access to a modern React and .NET platform, defining system architecture and transforming a tightly coupled system into a scalable, organisation-wide platform',
@@ -18,7 +17,6 @@ const EXPERIENCE = [
     company: 'Datacom',
     role: 'Software Developer',
     period: 'Nov 2019 – Nov 2021',
-    duration: '2yrs 1mo',
     location: 'Auckland, NZ',
     bullets: [
       'Contributed to decomposing a monolithic payroll application into microservices, improving scalability, deployment flexibility, and reducing release coupling across domains',
@@ -38,8 +36,8 @@ export default function Experience() {
 
       <div className="relative">
         <div className="absolute left-0 top-0 bottom-0 w-px bg-terminal-border ml-1" />
-        {EXPERIENCE.map((job, i) => (
-          <div key={i} className="relative pl-8 mb-8 last:mb-0">
+        {EXPERIENCE.map((job) => (
+          <div key={job.company} className="relative pl-8 mb-8 last:mb-0">
             <div className="absolute left-0 top-1.5 w-2.5 h-2.5 rounded-full bg-terminal-cyan border-2 border-terminal-bg" />
             <div className="bg-terminal-surface border border-terminal-border rounded-lg p-5">
               <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
@@ -53,8 +51,8 @@ export default function Experience() {
                 </div>
               </div>
               <ul className="space-y-2 mb-4">
-                {job.bullets.map((b, j) => (
-                  <li key={j} className="flex gap-3 text-terminal-text/70 text-sm font-sans">
+                {job.bullets.map((b) => (
+                  <li key={b} className="flex gap-3 text-terminal-text/70 text-sm font-sans">
                     <span className="text-terminal-cyan shrink-0 mt-0.5">›</span>
                     {b}
                   </li>
