@@ -140,7 +140,12 @@ export default function Layout() {
       style={isMobile ? { height: terminalHeight } : { width: terminalWidth }}
       className="shrink-0 flex flex-col bg-terminal-surface border-terminal-border"
     >
-      <div className="px-3 text-xs text-terminal-muted font-mono border-b border-terminal-border flex items-center gap-2 shrink-0 h-9">
+      <div
+        className={`px-3 text-xs text-terminal-muted font-mono border-b border-terminal-border flex items-center gap-2 shrink-0 h-9 ${isMobile ? 'cursor-row-resize select-none' : ''}`}
+        onMouseDown={isMobile ? (e) => startResize(e, 'vertical') : undefined}
+        onTouchStart={isMobile ? (e) => startResize(e, 'vertical') : undefined}
+      >
+        {isMobile && <span className="text-terminal-border mr-1">⠿</span>}
         <span className="w-2 h-2 rounded-full bg-terminal-green opacity-70" />
         <span>TERMINAL — jban@portfolio</span>
       </div>
