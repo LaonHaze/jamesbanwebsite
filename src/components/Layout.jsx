@@ -147,7 +147,7 @@ export default function Layout() {
   )
 
   return (
-    <div className="h-screen flex flex-col bg-terminal-bg text-terminal-text overflow-hidden">
+    <div className="h-dvh flex flex-col bg-terminal-bg text-terminal-text overflow-hidden">
       {/* Title bar */}
       <div className="h-8 bg-terminal-surface border-b border-terminal-border flex items-center px-3 shrink-0">
         <button
