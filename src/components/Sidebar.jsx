@@ -2,9 +2,9 @@ import { getFileIcon } from './fileIcons'
 
 const FILES = [
   { name: 'about.md' },
-  { name: 'skills.json' },
   { name: 'experience.ts' },
   { name: 'education.txt' },
+  { name: 'skills.json' },
   { name: 'contact.yml' },
 ]
 

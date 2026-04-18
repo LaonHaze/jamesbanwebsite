@@ -12,12 +12,12 @@ const SKILL_GROUPS = [
   {
     category: 'DevOps',
     color: 'purple',
-    skills: ['Azure DevOps', 'CI/CD Pipelines', 'Azure App Services', 'Docker'],
+    skills: ['Azure DevOps', 'TeamCity', 'Octopus', 'Azure App Services', 'Docker'],
   },
   {
     category: 'Integrations',
     color: 'yellow',
-    skills: ['Salesforce', 'MYOB EXO', 'EDI / Crossfire', 'Zaui', 'Narnoo'],
+    skills: ['Salesforce', 'MYOB EXO', 'Akeneo', 'Zaui', 'Narnoo'],
   },
   {
     category: 'Other',
