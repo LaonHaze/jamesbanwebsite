@@ -2,9 +2,9 @@
 
 ## Project
 
-Personal portfolio website — VS Code-style single-page React app hosted on GitHub Pages.
+Personal portfolio website — VS Code-style single-page React app hosted on GitHub Pages with custom domain.
 
-Live: `https://jban0811.github.io/jamesbanwebsite`  
+Live: `https://www.jamesban.com`  
 Deploy: `npm run deploy` (builds then publishes via `gh-pages -d dist`)
 
 ## Stack
@@ -16,8 +16,8 @@ Deploy: `npm run deploy` (builds then publishes via `gh-pages -d dist`)
 ## Architecture
 
 `Layout.jsx` is the shell. It owns:
-- `activeFile` / `openTabs` — which panel is shown in the editor
-- `sidebarOpen` — collapsible on mobile
+- `activeFile` / `openTabs` — which panel is shown in the editor; latest opened tab always moves to leftmost position
+- `sidebarOpen` — collapsible on mobile only; always visible on desktop (`lg` and above)
 - `terminalWidth` / `terminalHeight` — resizable via drag handle
 - `isMobile` — `window.innerWidth < 1024`, used to switch between horizontal/vertical layout
 
@@ -36,7 +36,8 @@ Commands are defined in `src/data/commands.js`. Each command has an `output()` f
 
 - Tailwind custom colors: `terminal-bg`, `terminal-surface`, `terminal-border`, `terminal-text`, `terminal-muted`, `terminal-cyan`, `terminal-green`, `terminal-yellow`, `terminal-purple`, `terminal-red`
 - Mobile breakpoint: `1024px` (Tailwind `lg`)
-- Sidebar width: `w-52` (208px)
-- Terminal default width: 420px (desktop), height: 224px (mobile)
-- Tab bar is only rendered when `openTabs.length > 0`
+- Sidebar width: `w-52` (208px); always shown on desktop, collapsible on mobile
+- Terminal default width: 340px (desktop), height: 300px (mobile)
+- Tab bar only rendered when `openTabs.length > 0`
 - `dist/` and `node_modules/` are gitignored; deploy pushes only the built output
+- `public/CNAME` contains `www.jamesban.com` — must stay for custom domain to persist across deploys

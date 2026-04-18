@@ -2,7 +2,7 @@
 
 Personal portfolio website for Jaeyoung (James) Ban, Senior Full Stack Developer based in Auckland, NZ.
 
-Live site: [jban0811.github.io/jamesbanwebsite](https://jban0811.github.io/jamesbanwebsite)
+Live site: [www.jamesban.com](https://www.jamesban.com)
 
 ## Overview
 
@@ -35,4 +35,4 @@ npm run dev
 npm run deploy
 ```
 
-Builds and publishes to the `gh-pages` branch, served at the live URL above.
+Builds and publishes to the `gh-pages` branch, served at [www.jamesban.com](https://www.jamesban.com).
